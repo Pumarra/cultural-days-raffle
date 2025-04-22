@@ -1,0 +1,6 @@
+name = "cultural-days-raffle-worker" # Name of your Worker
+type = "javascript" # Type of Worker (can also be "webpack" or "rust")
+account_id = "4e583e436677cbe3e158423e62dbf8d3"
+workers_dev = true # Enable Workers.dev subdomain for testing
+route = "" # Leave blank for Workers.dev or specify a custom domain route
+zone_id = "" # Optional, only needed for custom domains
