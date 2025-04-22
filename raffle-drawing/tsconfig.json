@@ -1,19 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "target": "es6", // Target ECMAScript 6
+    "module": "commonjs", // Use CommonJS module system
+    "strict": true, // Enable all strict type-checking options
+    "esModuleInterop": true, // Allow default imports from CommonJS modules
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in imports
+    "outDir": "./dist", // Output directory for compiled files
+    "rootDir": "./src", // Root directory of input files
+    "resolveJsonModule": true, // Allow importing JSON files
+    "strictNullChecks": true, // Enable strict null checks
+    "noImplicitAny": true, // Disallow implicit 'any' types
+    "declaration": true // Generate .d.ts files for TypeScript definitions
   },
   "include": [
-    "src/**/*"
+    "src/**/*" // Include all files in the src directory
   ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules", // Exclude node_modules
+    "**/*.spec.ts" // Exclude test files
   ]
 }

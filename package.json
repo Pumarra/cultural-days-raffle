@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "lite-server",
-    "build": "cd raffle-drawing && npm run build"
+    "build": "cd raffle-drawing && npx tsc"
   },
   "keywords": [
     "cultural days",
@@ -15,6 +15,7 @@
   "author": "aalps",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.6.1"
+    "lite-server": "^2.6.1",
+    "typescript": "^5.8.3"
   }
 }
