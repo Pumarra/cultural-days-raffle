@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffle Drawing</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="header" style="position: relative; background-image: url('https://morongoculture.com/wp-content/uploads/2023/11/DSC02841-2048x1233.jpg'); background-size: cover; background-position: center; height: 350px;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
+            <div id="title" style="position: relative; color: white; text-align: center; padding-top: 100px; font-size: 2em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+                Morongo Cultural Days
+            </div>
+            <div id="subtitle" style="position: relative; color: white; text-align: center; font-size: 5em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+                Daughter & Warrior of Morongo <br> Raffle Drawing
+            </div>
+        </div>
+        <div id="winner-section" style="text-align: center; margin-top: 20px;">
+            <h2>The 2025 Raffle Drawing Winner is...</h2>
+            <p id="winner-name" style="font-size: 5em; font-weight: bold; color: #007bff;">[Winner Name]</p>
+            <button id="randomize-button" style="margin-top: 20px; font-size: 4em; padding: 20px 80px; font-weight: bold;">Start</button>
+            <script>
+                const names = ["Alice", "Bob", "Charlie", "Diana", "Eve"];
+                const winnerNameElement = document.getElementById("winner-name");
+                const randomizeButton = document.getElementById("randomize-button");
+                let intervalId = null;
+
+                randomizeButton.addEventListener("click", () => {
+                    if (intervalId) {
+                        clearInterval(intervalId);
+                        intervalId = null;
+                        randomizeButton.textContent = "Start";
+                    } else {
+                        intervalId = setInterval(() => {
+                            const randomName = names[Math.floor(Math.random() * names.length)];
+                            winnerNameElement.textContent = randomName;
+                        }, 100);
+                        randomizeButton.textContent = "Stop";
+                    }
+                });
+            </script>
+        </div>
+    </div>
+    <script src="../dist/app.js"></script>
+</body>
+</html>
