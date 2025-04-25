@@ -1,6 +1,6 @@
 {
   "server": {
-    "baseDir": "./raffle-drawing/public"
+    "baseDir": "./public"
   },
   "open": false
 }
