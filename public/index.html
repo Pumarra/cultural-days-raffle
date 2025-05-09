@@ -18,39 +18,57 @@
             </div>
         </div>
         <div id="winner-section" style="text-align: center; margin-top: 20px;">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <p style="font-size: 2em; font-weight: bold;">The Raffle Drawing Winner is...</p>
-            <p id="winner-name" style="font-size: 5em; font-weight: bold; color: #007bff;margin-top: 10px">[Winner Name]</p>
-            <button id="randomize-button" style="margin-top: 0px; font-size: 4em; padding: 20px 80px; font-weight: bold;">Start</button>
+            <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+                <p id="winner-name" style="font-size: 5em; font-weight: bold; color: #007bff; margin-top: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center;">[Winner Name]</p>
+            </div>
+            <style>
+                @media (max-width: 768px) {
+                #winner-name {
+                    font-size: 3em;
+                }
+                }
+                @media (max-width: 480px) {
+                #winner-name {
+                    font-size: 2em;
+                }
+                }
+            </style>
+            <div style="width: 100%; max-width: 400px; display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                <button id="randomize-button" style="font-size: 4em; padding: 20px 80px; font-weight: bold;">Start</button>
+            </div>
+            </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
             <script>
-                const winnerNameElement = document.getElementById("winner-name");
-                const randomizeButton = document.getElementById("randomize-button");
-                let intervalId = null;
-                let names = [];
+            const winnerNameElement = document.getElementById("winner-name");
+            const randomizeButton = document.getElementById("randomize-button");
+            let intervalId = null;
+            let names = [];
             
-                // Fetch and process the CSV file
-                fetch('/data/entries.csv')
-                    .then(response => response.text())
-                    .then(csvText => {
-                        const data = Papa.parse(csvText, { header: true }).data;
-                        names = data
-                            .filter(row => row.name && !isNaN(Number(row.entries))) // Ensure valid rows
-                            .flatMap(row => Array(Number(row.entries)).fill(row.name));
-                    });
-            
-                randomizeButton.addEventListener("click", () => {
-                    if (intervalId) {
-                        clearInterval(intervalId);
-                        intervalId = null;
-                        randomizeButton.textContent = "Start";
-                    } else {
-                        intervalId = setInterval(() => {
-                            const randomName = names[Math.floor(Math.random() * names.length)];
-                            winnerNameElement.textContent = randomName;
-                        }, 100);
-                        randomizeButton.textContent = "Stop";
-                    }
+            // Fetch and process the CSV file
+            fetch('/data/entries.csv')
+                .then(response => response.text())
+                .then(csvText => {
+                const data = Papa.parse(csvText, { header: true }).data;
+                names = data
+                    .filter(row => row.name && !isNaN(Number(row.entries))) // Ensure valid rows
+                    .flatMap(row => Array(Number(row.entries)).fill(row.name));
                 });
+            
+            randomizeButton.addEventListener("click", () => {
+                if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+                randomizeButton.textContent = "Start";
+                } else {
+                intervalId = setInterval(() => {
+                    const randomName = names[Math.floor(Math.random() * names.length)];
+                    winnerNameElement.textContent = randomName;
+                }, 100);
+                randomizeButton.textContent = "Stop";
+                }
+            });
             </script>
         </div>
     </div>
