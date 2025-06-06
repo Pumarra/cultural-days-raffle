@@ -47,13 +47,13 @@
             let names = [];
             
             // Fetch and process the CSV file
-            fetch('https://morongoculture.com/wp-content/uploads/raffle/entries.csv')
+            fetch('/data/entries.csv')
                 .then(response => response.text())
                 .then(csvText => {
                 const data = Papa.parse(csvText, { header: true }).data;
                 names = data
-                    .filter(row => row.Customer && !isNaN(Number(row["Items sold"]))) // Ensure valid rows
-                    .flatMap(row => Array(Number(row["Items sold"])).fill(row.Customer));
+                    .filter(row => row.name && !isNaN(Number(row.entries))) // Ensure valid rows
+                    .flatMap(row => Array(Number(row.entries)).fill(row.name));
                 });
             
             randomizeButton.addEventListener("click", () => {
