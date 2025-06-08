@@ -47,7 +47,7 @@
             let names = [];
             
             // Fetch and process the CSV file
-            fetch('https://morongoculture.com/wp-content/uploads/raffle/entries.csv')
+            fetch('/data/entries.csv')
                 .then(response => response.text())
                 .then(csvText => {
                 const data = Papa.parse(csvText, { header: true }).data;
